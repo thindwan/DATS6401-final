@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>Factors affecting Olympic Games Results-An Analytical Study</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+        
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/fontAwesome.css">
+        <link rel="stylesheet" href="css/hero-slider.css">
+        <link rel="stylesheet" href="css/owl-carousel.css">
+        <link rel="stylesheet" href="css/templatemo-style.css">
+        <link rel="stylesheet" href="css/lightbox.css">
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+
+
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        <script>
+            google.charts.load('current', {'packages': ['corechart', 'geochart']}); //must add GeoChart
+            google.charts.setOnLoadCallback(drawAllSheets);
+        google.charts.load("current", {packages:['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawAllSheets(){
+                drawSheetName('WT', 'SELECT A,C,D,E,F', FirstResponseHandler);
+                drawSheetName('WINTERCOMP', 'SELECT A,D,E,H,I,F,G', SecondResponseHandler);
+                drawSheetName('SUMMERCOMP', 'SELECT A,D,E,F,G,H,I', ThirdResponseHandler);
+                
+                
+    
+    
+          
+            } //drawAllSheets
+    
+    
+    function drawSheetName(sheetName, query, responseHandler){
+        var queryString = encodeURIComponent(query);
+        var query = new google.visualization.Query(
+            'https://docs.google.com/spreadsheets/d/1-xL8tbED0h6Alvkwcgek78UWBvbnBsREnQ8_LQZMgCE/gviz/tq?sheet='
+            
+            + sheetName + '&headers=1&tq=' + queryString);
+        query.send(responseHandler);
+    } //drawSheetName
+
+    function checkError(response) {
+        if (response.isError()) {
+            alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage())
+            return;
+        }
+    } //checkError
+    
+    function FirstResponseHandler(response){
+                checkError(response);
+                var data = response.getDataTable();
+                data.sort({column: 4, desc: true});
+    
+                var options = {
+                    legend: 'none',
+                    bars: 'horizontal',
+                    isStacked: true,
+                    annotations: {alwaysOutside: true},
+                    // title: 'Winter Team Performance',
+                    vAxis: {title: 'Country'},
+                    hAxis: {title: ' No. of Medals'}
+                };
+    
+                var chart = new google.visualization.BarChart(document.getElementById('team_div'));
+                chart.draw(data, options);
+            } //FirstResponseHandler
+
+
+
+            function SecondResponseHandler(response) {
+                checkError(response);
+                var data = response.getDataTable();
+                data.sort({column: 6, desc:true});
+    
+                var options = {
+                    vAxis: {title: 'Per Capita Indicators($)'},
+                    hAxis: {title: 'Years'}
+                };
+    
+                var chart = new google.visualization.ColumnChart(document.getElementById('per_capita_div'));
+                chart.draw(data, options);
+            } //militarySpendingResponseHandler
+
+
+            function ThirdResponseHandler(response) {
+                checkError(response);
+                var data = response.getDataTable();
+                data.sort({column: 6, desc:true});
+    
+                var options = {
+                    vAxis: {title: 'Per Capita Indicators($)'},
+                    hAxis: {title: 'Years'}
+                };
+    
+                var chart = new google.visualization.BarChart(document.getElementById('bubble_div'));
+                chart.draw(data, options);
+            } //militarySpendingResponseHandler
+
+
+        </script>
+        
+    </head>
+
+<body></body>
+    <div class="header">
+        <div class="container">
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- <a href="#" class="navbar-brand scroll-top"><em>T</em>inker</a> -->
+                </div>
+                <!--/.navbar-header-->
+                <div id="main-nav" class="collapse navbar-collapse">
+                    <ul  class="nav navbar-nav">
+                        <!-- <li></li><a href="#" class="scroll-up"><b  style="font-size: medium; color: black;" >Home</b></a></li> -->
+                        <li ><a href="#" class="scroll-link" data-id="about"><b style="font-size: medium; color:gold;" >Links</b></a></li>
+                        <li ><a href="#" class="scroll-link" data-id="portfolio"><b style="font-size: medium; color: gold;" >Analysis</b></a></li>
+                         <li ><a href="#" class="scroll-up" data-id="blog"><b style="font-size: medium; color: gold;" >Home</b></a></li> 
+                    </ul>
+                </div>
+                <!--/.navbar-collapse-->
+            </nav>
+            <!--/.navbar-->
+        </div>
+        <!--/.container-->
+    </div>
+    <!--/.header-->
+
+
+    <div class="parallax-content baner-content" id="home">
+        <div class="container">
+            <div class="text-content">
+               
+                <!-- <p style="color: black; font-size: x-large;"> <b>Factors affecting Olympic Games Results-An Analytical Study</b></p> -->
+                <div class="primary-white-button" style="margin-top: 350px;" style="color:black" >
+                    <a href="https://public.tableau.com/profile/tanvi4038#!/vizhome/OlympicsPart2/Story1?publish=yes" class="btn btn-two" style="color:black;" style="padding-bottom:40px; font-size:300%;" background = "#66ff66;"  >  Olympics Games Analysis- Explore More on Tabelue Public</a>>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section id="about" class="page-section">
+
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12" style="margin-left: 200px;" >
+                    <div class="service-item">
+                        <div>
+                            <img height="220px" width="220px" src="img/wiki.png" alt="">
+                        </div>
+                        <h3> Olympic Games-Wikipedia </h3>
+                       
+                        <body style="background-color:BurlyWood;">
+                        <div class="primary-blue-button">
+                            <a href="https://en.wikipedia.org/wiki/Olympic_Games" style="color:gold">Continue Reading</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="service-item">
+                        <div>
+                            <img  height="220px" width="220px"  src="img/torch.png" alt="">
+                        </div>
+                        <h3>History of Olympics Games</h3>
+                        
+                        <div class="primary-blue-button">
+                            <a href="https://www.olympic.org/ancient-olympic-games/history" style="color:gold">Continue Reading</a>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+<!-- <div style="background-image: url(./img/img.jpg);"> -->
+
+
+    <section id="portfolio" >
+        <div class="content-wrapper">
+            <div class="inner-container container"  >
+
+                
+                
+
+            
+
+                <h1 style="color: black;">Why Olympics</h1>
+                
+
+
+                    <!-- <p> -->
+                        <b> Olympic Games are a leading international sporting event featuring summer and winter sports competitions in which thousands of athletes both men and women around the world participate. 
+                        Since 1896 more than 35,000 medals have been awarded at the Olympics. It is important to understand the relationship between the factors contributing to the performance of athletes in the competition based on GDP, education, healthcare, and Season.</b>
+                          <br /><br />
+                        
+                         <b>Primary objective of this project is to visualize the countries who have won the medals and factors contributing to their performances which will give a prediction for future Olympic games
+                          The variables analyzed will be the type of Olympics, GDP per Capita, gender, healthcare, location, and education. Understanding the relationship between these factors may 
+                         help to predict the chances of a country winning a medal in the future Olympic games .Following is the analysis of data through Tabelue</b>  <br /><br />
+                        
+                         <div class="mainTitle">
+                            <div class="button">
+                                <!-- <a href="https://public.tableau.com/profile/tanvi4038#!/vizhome/OlympicsPart2/Story1?publish=yes" class="btn btn-two" style="color:gold;" style="padding-bottom:40px; font-size:300%;" background = "#66ff66;"  >  Olympics Games Analysis- Explore More on Tabelue Public</a> -->
+                        
+                            </div>
+                        </div>
+                       <br /><br />                       
+
+                
+<!-- Chart Section -->
+
+<div class='tableauPlaceholder' id='viz1608059226103' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;M2&#47;M22SBWT3S&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;M22SBWT3S' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;M2&#47;M22SBWT3S&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-GB' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1608059226103');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+<!-- <div id="team_div" style="width: 900px; height: 500px;color: goldenrod;"></div> -->
+<br></br>
+<h1><i></i>More trends and conclusions through Google Charts<i></i></h1>
+<h3>Winter Team Performance</h3>
+<div id="team_div" style="width: 900px; height: 500px;color: goldenrod;"></div>
+<br></br>
+
+<h3>WINTER OLYMPICS-NORWAY VS FRANCE (Comparing socio-economic factors of Norway to the France)</h3>
+<div id="per_capita_div" style="width: 900px; height: 500px; color: goldenrod;"></div>
+<br></br>
+<h3>Summer OLYMPICS-USA VS JAPAN( Comparing socio-economic factors of United States to the Japan)</h3>
+<div id="bubble_div" style="width: 900px; height: 500px; color: goldenrod;"></div>
+
+<br></br>
+
+</body>
+</html>
+
+
+            </div>
+        </div> 
+    </section>
+<!-- </div> -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <div class="logo">
+                       <p>Copyright &copy; Tanvi Hindwan
+                    </div>
+                </div>
+               
+                
+               
+            </div>
+        </div>
+    </footer>
+
+  
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+    <script src="js/vendor/bootstrap.min.js"></script>
+
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+    
+    <script type="text/javascript">
+    $(document).ready(function() {
+        // navigation click actions 
+        $('.scroll-link').on('click', function(event){
+            event.preventDefault();
+            var sectionID = $(this).attr("data-id");
+            scrollToID('#' + sectionID, 750);
+        });
+        // scroll to top action
+        $('.scroll-top').on('click', function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop:0}, 'slow');         
+        });
+        // mobile nav toggle
+        $('#nav-toggle').on('click', function (event) {
+            event.preventDefault();
+            $('#main-nav').toggleClass("open");
+        });
+    });
+    // scroll function
+    function scrollToID(id, speed){
+        var offSet = 50;
+        var targetOffset = $(id).offset().top - offSet;
+        var mainNav = $('#main-nav');
+        $('html,body').animate({scrollTop:targetOffset}, speed);
+        if (mainNav.hasClass("open")) {
+            mainNav.css("height", "1px").removeClass("in").addClass("collapse");
+            mainNav.removeClass("open");
+        }
+    }
+    if (typeof console === "undefined") {
+        console = {
+            log: function() { }
+        };
+    }
+    </script>
+</body>
+</html>
